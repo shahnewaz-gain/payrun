@@ -10,14 +10,14 @@
 
 const en = {
   common: {
-    yes: "Yes",
     no: "No",
+    yes: "Yes",
   },
   errors: {
     bad_request: "Something went wrong! Please try again.",
-    unauthorized: "Unauthorized",
     not_found: "Not found!",
     internal_server_error: "Internal server error!",
+    unauthorized: "Unauthorized",
     you_have_been_deactivated: "You have been deactivated!",
   },
   label: {
