@@ -1,8 +1,11 @@
 "use client";
 
+import { ApolloProvider } from "@apollo/client";
 import { useEffect } from "react";
+import client from "@/lib/apollo-client";
 import { store } from "@/redux/store";
 import { Provider } from "react-redux";
+import AuthWrapper from "@/components/AuthWrapper";
 import { ToastContainer } from "react-toastify";
 
 const GlobalProvider = ({ children }) => {
@@ -11,10 +14,12 @@ const GlobalProvider = ({ children }) => {
   }, []);
 
   return (
-    <>
-      <Provider store={store}>{children}</Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <AuthWrapper>{children}</AuthWrapper>
+      </Provider>
       <ToastContainer />
-    </>
+    </ApolloProvider>
   );
 };
 

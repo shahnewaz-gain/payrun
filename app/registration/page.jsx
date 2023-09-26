@@ -8,7 +8,7 @@ import { toastAlert } from "@/utils";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
-const StudentRegistration = () => {
+const Registration = () => {
   const [mutationData, setMutationData] = useState({});
   const dispatch = useDispatch();
   const router = useRouter();
@@ -20,7 +20,7 @@ const StudentRegistration = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const updatedData = { ...mutationData, role: "student" };
+    const updatedData = { ...mutationData };
     delete updatedData.confirmPassword;
 
     if (size(updatedData)) {
@@ -119,4 +119,4 @@ const StudentRegistration = () => {
   );
 };
 
-export default StudentRegistration;
+export default Registration;

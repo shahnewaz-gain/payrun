@@ -1,4 +1,4 @@
-/* eslint-disable no-var */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 
 "use client";
 
@@ -8,18 +8,21 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { userLogIn } from "@/redux/auth/authSlice";
+import { useTranslation } from "@/lib/i18next/client";
 
 function Login() {
+  const { t } = useTranslation();
   const [mutationData, setMutationData] = useState({});
   const dispatch = useDispatch();
   const router = useRouter();
+
   const handleChange = (type, value) => {
     setMutationData((prevData) => ({ ...prevData, [type]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (size(mutationData)) {
       Cookies.set("accessToken", "dasdasdasdasd", { expires: 7 });
       dispatch(
@@ -52,7 +55,7 @@ function Login() {
               />
             </div>
             <div className="form-group mt-2">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">{t("label.password")}</label>
               <input
                 id="password"
                 name="password"
@@ -72,14 +75,14 @@ function Login() {
           <p className="text-sm text-center mt-3">
             Do not have an account?
             {" "}
-            <span
+            <div
               role="button"
               tabIndex="0"
               onClick={() => router.push("/registration")}
               className="text-decoration-underline cursor-pointer"
             >
               Create an account
-            </span>
+            </div>
           </p>
         </div>
       </div>
