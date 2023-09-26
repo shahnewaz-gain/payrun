@@ -10,19 +10,19 @@
 
 const en = {
   common: {
-    no: "No",
-    yes: "Yes",
+    no: 'No',
+    yes: 'Yes'
   },
   errors: {
-    bad_request: "Something went wrong! Please try again.",
-    not_found: "Not found!",
-    internal_server_error: "Internal server error!",
-    unauthorized: "Unauthorized",
-    you_have_been_deactivated: "You have been deactivated!",
+    bad_request: 'Something went wrong! Please try again.',
+    not_found: 'Not found!',
+    internal_server_error: 'Internal server error!',
+    unauthorized: 'Unauthorized',
+    you_have_been_deactivated: 'You have been deactivated!'
   },
   label: {
-    password: "Password",
-  },
+    password: 'Password'
+  }
 };
 
 export default en;

@@ -1,6 +1,6 @@
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
-const toastType = ["info", "success", "warning", "error", "default"];
+const toastType = ['info', 'success', 'warning', 'error', 'default'];
 
 export function toastAlert(type, toastBody, position, toastId) {
   if (toastId) toast.dismiss(toastId.current);
@@ -8,12 +8,12 @@ export function toastAlert(type, toastBody, position, toastId) {
   if (toastType?.includes(type)) {
     toast[type](toastBody, {
       position,
-      toastId,
+      toastId
     });
   } else {
-    toast(toastBody || "Default Toast", {
+    toast(toastBody || 'Default Toast', {
       position,
-      toastId,
+      toastId
     });
   }
 }

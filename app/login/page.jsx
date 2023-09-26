@@ -1,16 +1,14 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+'use client';
 
-"use client";
+import React, { useState } from 'react';
+import { size } from 'lodash';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { userLogIn } from '@/redux/auth/authSlice';
+import { useTranslation } from '@/lib/i18next/client';
 
-import React, { useState } from "react";
-import { size } from "lodash";
-import { useDispatch } from "react-redux";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import { userLogIn } from "@/redux/auth/authSlice";
-import { useTranslation } from "@/lib/i18next/client";
-
-function Login() {
+const Login = () => {
   const { t } = useTranslation();
   const [mutationData, setMutationData] = useState({});
   const dispatch = useDispatch();
@@ -24,11 +22,9 @@ function Login() {
     e.preventDefault();
 
     if (size(mutationData)) {
-      Cookies.set("accessToken", "dasdasdasdasd", { expires: 7 });
-      dispatch(
-        userLogIn({ accessToken: "", user: { email: mutationData?.email } }),
-      );
-      router.push("/");
+      Cookies.set('accessToken', 'dasdasdasdasd', { expires: 7 });
+      dispatch(userLogIn({ accessToken: '', user: { email: mutationData?.email } }));
+      router.push('/');
     }
   };
 
@@ -36,9 +32,7 @@ function Login() {
     <section className="py-5 container">
       <div className="row justify-content-center">
         <div className="col-12 col-md-6">
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-100">
-            Sign in
-          </h2>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-100">Sign in</h2>
 
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -51,11 +45,11 @@ function Login() {
                 required
                 className="form-control"
                 placeholder="Email address"
-                onChange={(e) => handleChange("email", e.target.value)}
+                onChange={(e) => handleChange('email', e.target.value)}
               />
             </div>
             <div className="form-group mt-2">
-              <label htmlFor="password">{t("label.password")}</label>
+              <label htmlFor="password">{t('label.password')}</label>
               <input
                 id="password"
                 name="password"
@@ -64,7 +58,7 @@ function Login() {
                 required
                 className="form-control"
                 placeholder="Password"
-                onChange={(e) => handleChange("password", e.target.value)}
+                onChange={(e) => handleChange('password', e.target.value)}
               />
             </div>
             <button type="submit" className="btn mt-4 btn-primary">
@@ -73,21 +67,20 @@ function Login() {
           </form>
 
           <p className="text-sm text-center mt-3">
-            Do not have an account?
-            {" "}
-            <div
+            Do not have an account?{' '}
+            <span
               role="button"
               tabIndex="0"
-              onClick={() => router.push("/registration")}
+              onClick={() => router.push('/registration')}
               className="text-decoration-underline cursor-pointer"
             >
               Create an account
-            </div>
+            </span>
           </p>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Login;

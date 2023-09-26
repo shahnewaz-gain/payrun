@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { AppSpinner } from "@/helpers/ui";
+import React, { useEffect, useState } from 'react';
+import { AppSpinner } from '@/helpers/ui';
 
 const AuthWrapper = ({ children }) => {
   const [loading, setLoading] = useState(true);

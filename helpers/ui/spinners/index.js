@@ -1,1 +1,1 @@
-export { default as AppSpinner } from "@/helpers/ui/spinners/AppSpinner";
+export { default as AppSpinner } from '@/helpers/ui/spinners/AppSpinner';

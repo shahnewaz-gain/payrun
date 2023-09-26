@@ -1,1 +1,1 @@
-export { AppSpinner } from "@/helpers/ui/spinners";
+export { AppSpinner } from '@/helpers/ui/spinners';

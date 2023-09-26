@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const AppSpinner = () => (
   <div className="my-5 d-flex justify-content-center">

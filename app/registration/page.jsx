@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { userLogIn } from "@/redux/auth/authSlice";
-import { size } from "lodash";
-import { useDispatch } from "react-redux";
-import { toastAlert } from "@/utils";
-import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
+import React, { useState } from 'react';
+import { userLogIn } from '@/redux/auth/authSlice';
+import { size } from 'lodash';
+import { useDispatch } from 'react-redux';
+import { toastAlert } from '@/utils';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const Registration = () => {
   const [mutationData, setMutationData] = useState({});
@@ -24,12 +24,10 @@ const Registration = () => {
     delete updatedData.confirmPassword;
 
     if (size(updatedData)) {
-      toastAlert("success", "Successfully created an account!", "top-right");
-      Cookies.set("accessToken", "dasdasdasdasd", { expires: 7 });
-      dispatch(
-        userLogIn({ accessToken: "", user: { email: mutationData?.email } })
-      );
-      router.push("/");
+      toastAlert('success', 'Successfully created an account!', 'top-right');
+      Cookies.set('accessToken', 'dasdasdasdasd', { expires: 7 });
+      dispatch(userLogIn({ accessToken: '', user: { email: mutationData?.email } }));
+      router.push('/');
     }
   };
 
@@ -52,7 +50,7 @@ const Registration = () => {
                 required
                 className="form-control"
                 placeholder="Enter name"
-                onChange={(e) => handleChange("name", e.target.value)}
+                onChange={(e) => handleChange('name', e.target.value)}
               />
             </div>
             <div className="form-group  mb-2">
@@ -65,7 +63,7 @@ const Registration = () => {
                 required
                 className="form-control"
                 placeholder="Email address"
-                onChange={(e) => handleChange("email", e.target.value)}
+                onChange={(e) => handleChange('email', e.target.value)}
               />
             </div>
             <div className="form-group mb-2">
@@ -78,7 +76,7 @@ const Registration = () => {
                 required
                 className="form-control"
                 placeholder="Password"
-                onChange={(e) => handleChange("password", e.target.value)}
+                onChange={(e) => handleChange('password', e.target.value)}
               />
             </div>
             <div className="form-group mb-2">
@@ -91,9 +89,7 @@ const Registration = () => {
                 required
                 className="form-control"
                 placeholder="Confirm password"
-                onChange={(e) =>
-                  handleChange("confirmPassword", e.target.value)
-                }
+                onChange={(e) => handleChange('confirmPassword', e.target.value)}
               />
             </div>
 
@@ -103,11 +99,11 @@ const Registration = () => {
           </form>
 
           <p className="text-sm text-center mt-3">
-            Already have an account?{" "}
+            Already have an account?{' '}
             <span
               role="button"
               tabIndex="0"
-              onClick={() => router.push("/login")}
+              onClick={() => router.push('/login')}
               className="text-decoration-underline cursor-pointer"
             >
               Log in
