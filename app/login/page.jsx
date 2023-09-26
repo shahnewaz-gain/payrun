@@ -6,9 +6,10 @@ import { size } from "lodash";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { toastAlert } from "@/utils";
+import { useTranslation } from "@/lib/i18next/client";
 
 const Login = () => {
+  const { t } = useTranslation();
   const [mutationData, setMutationData] = useState({});
   const dispatch = useDispatch();
   const router = useRouter();
@@ -52,7 +53,7 @@ const Login = () => {
               />
             </div>
             <div className="form-group mt-2">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">{t("label.password")}</label>
               <input
                 id="password"
                 name="password"
