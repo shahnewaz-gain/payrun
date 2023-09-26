@@ -9,7 +9,8 @@
       "plugin:react/recommended",
       "prettier",
       "airbnb/hooks",
-      "plugin:jsx-a11y/recommended"
+      "plugin:jsx-a11y/recommended",
+      "next/core-web-vitals"
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
