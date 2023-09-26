@@ -1,29 +1,29 @@
+/* eslint-disable no-var */
+
 "use client";
 
 import React, { useState } from "react";
-import { userLogIn } from "@/redux/auth/authSlice";
 import { size } from "lodash";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { toastAlert } from "@/utils";
+import { userLogIn } from "@/redux/auth/authSlice";
 
-const Login = () => {
+function Login() {
   const [mutationData, setMutationData] = useState({});
   const dispatch = useDispatch();
   const router = useRouter();
-
   const handleChange = (type, value) => {
     setMutationData((prevData) => ({ ...prevData, [type]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     if (size(mutationData)) {
       Cookies.set("accessToken", "dasdasdasdasd", { expires: 7 });
       dispatch(
-        userLogIn({ accessToken: "", user: { email: mutationData?.email } })
+        userLogIn({ accessToken: "", user: { email: mutationData?.email } }),
       );
       router.push("/");
     }
@@ -70,7 +70,8 @@ const Login = () => {
           </form>
 
           <p className="text-sm text-center mt-3">
-            Do not have an account?{" "}
+            Do not have an account?
+            {" "}
             <span
               role="button"
               tabIndex="0"
@@ -84,6 +85,6 @@ const Login = () => {
       </div>
     </section>
   );
-};
+}
 
 export default Login;

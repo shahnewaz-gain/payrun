@@ -1,3 +1,37 @@
 {
-  "extends": "next/core-web-vitals"
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+      "airbnb", 
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "rules": {
+      // override default options
+        "indent": ["error", 2],
+        "no-unused-expressions": "off",
+        "quotes": ["error", "double", { "avoidEscape": true }],
+        "rest-spread-spacing": ["error"],
+        "object-curly-spacing": ["error", "always"],
+        "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+        "no-whitespace-before-property": "error",
+        "no-multiple-empty-lines":["error", { "max": 2, "maxEOF": 0 }],
+        "no-multi-spaces": "error",
+        "no-undef": "error",
+        "multiline-ternary": ["error", "always-multiline"],
+        "no-nested-ternary": "error",
+        "comma-spacing":["error", { "before": false, "after": true }],
+        "no-var": "off",
+        "arrow-spacing": "error",
+        "no-void": "error",
+        "no-empty": "error",
+        "no-console": "off",
+        "max-params": ["error", 3]
+    }
 }
