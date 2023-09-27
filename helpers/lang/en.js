@@ -21,7 +21,12 @@ const en = {
     you_have_been_deactivated: 'You have been deactivated!'
   },
   label: {
-    password: 'Password'
+    password: 'Password',
+    sign_up: 'Sign up',
+    log_in: 'Log in'
+  },
+  action: {
+    successfully_created_account: 'Successfully Created account!'
   }
 };
 

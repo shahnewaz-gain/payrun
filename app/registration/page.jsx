@@ -1,35 +1,43 @@
 'use client';
 
 import React, { useState } from 'react';
-import { size } from 'lodash';
-import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
 import { toastAlert } from '@/utils';
-import { userLogIn } from '@/redux/auth/authSlice';
+import { requestForRegister } from '@/helpers/restApiRequests';
+import { useTranslation } from '@/lib/i18next/client';
 
 const Registration = () => {
+  const { t } = useTranslation();
   const [mutationData, setMutationData] = useState({});
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (type, value) => {
     setMutationData((prevData) => ({ ...prevData, [type]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const updatedData = { ...mutationData };
     delete updatedData.confirmPassword;
 
-    if (size(updatedData)) {
-      toastAlert('success', 'Successfully created an account!', 'top-right');
-      Cookies.set('accessToken', 'dasdasdasdasd', { expires: 7 });
-      dispatch(userLogIn({ accessToken: '', user: { email: mutationData?.email } }));
-      router.push('/');
+    try {
+      const response = await requestForRegister(updatedData);
+      if (response?.status === 200) {
+        toastAlert('success', t('action.successfully_created_account'), 'top-right');
+        setLoading(false);
+        router.push('/login');
+      }
+    } catch (error) {
+      toastAlert('danger', error?.message, 'top-right');
+      setLoading(false);
     }
   };
+
+  const isSameConfirmPassWithPass = mutationData?.password === mutationData?.confirmPassword;
+  const disableBtn = !isSameConfirmPassWithPass || loading;
 
   return (
     <section className="py-5 container">
@@ -43,10 +51,8 @@ const Registration = () => {
             <div className="form-group mb-2">
               <label htmlFor="name">Name</label>
               <input
-                id="name"
                 name="name"
-                type="name"
-                autoComplete="name"
+                type="text"
                 required
                 className="form-control"
                 placeholder="Enter name"
@@ -56,10 +62,8 @@ const Registration = () => {
             <div className="form-group  mb-2">
               <label htmlFor="email-address">Email address</label>
               <input
-                id="email-address"
                 name="email"
                 type="email"
-                autoComplete="email"
                 required
                 className="form-control"
                 placeholder="Email address"
@@ -89,10 +93,15 @@ const Registration = () => {
                 placeholder="Confirm password"
                 onChange={(e) => handleChange('confirmPassword', e.target.value)}
               />
+              {mutationData.password &&
+                mutationData.confirmPassword &&
+                !isSameConfirmPassWithPass && (
+                  <span className="form-text text-danger">Password does not match!</span>
+                )}
             </div>
 
-            <button type="submit" className="mt-4 btn btn-primary">
-              Create Account
+            <button type="submit" disabled={disableBtn} className="mt-4 btn btn-primary">
+              {`${t('label.sign_up')} ${loading ? '...' : ''}`}
             </button>
           </form>
 
@@ -104,7 +113,7 @@ const Registration = () => {
               onClick={() => router.push('/login')}
               className="text-decoration-underline cursor-pointer"
             >
-              Log in
+              {t('label.log_in')}
             </span>
           </p>
         </div>

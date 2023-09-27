@@ -20,7 +20,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "indent": ["error", 2],
+    "indent": 0,
     "no-unused-expressions": "off",
     "rest-spread-spacing": ["error"],
     "object-curly-spacing": ["error", "always"],

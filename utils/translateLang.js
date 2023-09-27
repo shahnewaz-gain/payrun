@@ -1,6 +1,7 @@
 /* Instructions for using this component
  - we can use it inside functions, but not inside components
 */
+
 'use client';
 
 import { Trans } from 'react-i18next';
