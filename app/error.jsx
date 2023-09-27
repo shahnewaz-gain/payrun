@@ -2,13 +2,13 @@
 
 'use client';
 
-function Error({ error, reset }) {
+function Error({ error }) {
   return (
     <div>
       <h2>An error occurred: {error?.message}</h2>
 
       {/* attempt to recover by trying to re-render the segment */}
-      <button type="button" onClick={reset}>
+      <button type="button" onClick={() => window.location.reload(false)}>
         Try again
       </button>
     </div>
