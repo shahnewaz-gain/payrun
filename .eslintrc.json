@@ -52,6 +52,7 @@
     "import/named": 0,
     "react/destructuring-assignment": 0,
     "camelcase": 0,
+    "import/no-extraneous-dependencies": 0,
     "react/function-component-definition": [
       2,
       {

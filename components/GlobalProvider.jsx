@@ -9,6 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import client from '@/lib/apollo-client';
 import { store } from '@/redux/store';
 import AuthWrapper from '@/components/AuthWrapper';
+import Middleware from '@/components/Middleware';
 
 const GlobalProvider = ({ children }) => {
   useEffect(() => {
@@ -18,7 +19,9 @@ const GlobalProvider = ({ children }) => {
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <AuthWrapper>{children}</AuthWrapper>
+        <AuthWrapper>
+          <Middleware>{children}</Middleware>
+        </AuthWrapper>
       </Provider>
       <ToastContainer />
     </ApolloProvider>
