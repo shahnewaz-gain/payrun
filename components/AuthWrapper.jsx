@@ -10,7 +10,8 @@ const AuthWrapper = ({ children }) => {
     setLoading(false);
   }, []);
 
-  return loading ? <AppSpinner /> : <div>{children}</div>;
+  if (loading) return <AppSpinner />;
+  return children;
 };
 
 export default AuthWrapper;

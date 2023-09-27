@@ -1,8 +1,12 @@
+/* eslint-disable max-params */
+
+'use client';
+
 import { toast } from 'react-toastify';
 
 const toastType = ['info', 'success', 'warning', 'error', 'default'];
 
-export function toastAlert(type, toastBody, position, toastId) {
+const toastAlert = (type, toastBody, position, toastId) => {
   if (toastId) toast.dismiss(toastId.current);
 
   if (toastType?.includes(type)) {
@@ -16,4 +20,6 @@ export function toastAlert(type, toastBody, position, toastId) {
       toastId
     });
   }
-}
+};
+
+export default toastAlert;
