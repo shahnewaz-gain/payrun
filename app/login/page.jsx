@@ -1,30 +1,37 @@
 'use client';
 
 import React, { useState } from 'react';
-import { size } from 'lodash';
-import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
-import { userLogIn } from '@/redux/auth/authSlice';
 import { useTranslation } from '@/lib/i18next/client';
+import { toastAlert } from '@/utils';
+import { requestForLogin } from '@/helpers/restApiRequests';
 
 const Login = () => {
   const { t } = useTranslation();
   const [mutationData, setMutationData] = useState({});
-  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleChange = (type, value) => {
     setMutationData((prevData) => ({ ...prevData, [type]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    if (size(mutationData)) {
-      Cookies.set('accessToken', 'dasdasdasdasd', { expires: 7 });
-      dispatch(userLogIn({ accessToken: '', user: { email: mutationData?.email } }));
-      router.push('/');
+    try {
+      const response = await requestForLogin(mutationData);
+
+      if (response?.status === 200) {
+        const { data } = response;
+        Cookies.set('accessToken', data?.token, { expires: 7 });
+        router.push('/dashboard');
+      }
+    } catch (error) {
+      toastAlert('danger', error?.message, 'top-right');
+      setLoading(false);
     }
   };
 
@@ -38,7 +45,6 @@ const Login = () => {
             <div className="form-group">
               <label htmlFor="email-address">Email address</label>
               <input
-                id="email-address"
                 name="email"
                 type="email"
                 required
@@ -50,7 +56,6 @@ const Login = () => {
             <div className="form-group mt-2">
               <label htmlFor="password">{t('label.password')}</label>
               <input
-                id="password"
                 name="password"
                 type="password"
                 required
@@ -59,8 +64,8 @@ const Login = () => {
                 onChange={(e) => handleChange('password', e.target.value)}
               />
             </div>
-            <button type="submit" className="btn mt-4 btn-primary">
-              Sign in
+            <button type="submit" disabled={loading} className="btn mt-4 btn-primary">
+              {`${t('label.log_in')} ${loading ? '...' : ''}`}
             </button>
           </form>
 
