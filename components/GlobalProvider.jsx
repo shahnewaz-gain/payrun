@@ -1,12 +1,14 @@
+/* eslint-disable global-require */
+
 'use client';
 
 import { ApolloProvider } from '@apollo/client';
 import { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import client from '@/lib/apollo-client';
 import { store } from '@/redux/store';
-import { Provider } from 'react-redux';
 import AuthWrapper from '@/components/AuthWrapper';
-import { ToastContainer } from 'react-toastify';
 
 const GlobalProvider = ({ children }) => {
   useEffect(() => {

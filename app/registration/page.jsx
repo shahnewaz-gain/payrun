@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { userLogIn } from '@/redux/auth/authSlice';
 import { size } from 'lodash';
 import { useDispatch } from 'react-redux';
-import { toastAlert } from '@/utils';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { toastAlert } from '@/utils';
+import { userLogIn } from '@/redux/auth/authSlice';
 
 const Registration = () => {
   const [mutationData, setMutationData] = useState({});
@@ -72,7 +72,6 @@ const Registration = () => {
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
                 required
                 className="form-control"
                 placeholder="Password"
@@ -85,7 +84,6 @@ const Registration = () => {
                 id="confirm-password"
                 name="confirm-password"
                 type="password"
-                autoComplete="confirm-password"
                 required
                 className="form-control"
                 placeholder="Confirm password"

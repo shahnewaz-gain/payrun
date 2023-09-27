@@ -41,7 +41,6 @@ const Login = () => {
                 id="email-address"
                 name="email"
                 type="email"
-                autoComplete="email"
                 required
                 className="form-control"
                 placeholder="Email address"
@@ -54,7 +53,6 @@ const Login = () => {
                 id="password"
                 name="password"
                 type="password"
-                autoComplete="current-password"
                 required
                 className="form-control"
                 placeholder="Password"
