@@ -1,7 +1,15 @@
 'use client';
 
 import React from 'react';
+import { useSelector } from 'react-redux';
+import withRoutingMiddleware from '@/components/middlewares/withRoutingMiddleware';
+import Dashboard from '@/components/dashboard';
 
-const Dashboard = () => <div className="text-center m-5">Dashboard</div>;
+const DashboardPage = () => {
+  const { userInfo } = useSelector((state) => state.auth);
+  console.log('userInfo', userInfo);
 
-export default Dashboard;
+  return <Dashboard />;
+};
+
+export default withRoutingMiddleware(DashboardPage);

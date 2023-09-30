@@ -3,16 +3,16 @@
 'use client';
 
 import { ApolloProvider } from '@apollo/client';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import client from '@/lib/apollo-client';
-import { store } from '@/redux/store';
+import store from '@/redux/store';
 import AuthWrapper from '@/components/AuthWrapper';
-import Middleware from '@/components/Middleware';
+import CustomMiddleware from '@/components/middlewares/CustomMiddleware';
 
 const GlobalProvider = ({ children }) => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     require('bootstrap/dist/js/bootstrap.bundle.min.js');
   }, []);
 
@@ -20,7 +20,7 @@ const GlobalProvider = ({ children }) => {
     <ApolloProvider client={client}>
       <Provider store={store}>
         <AuthWrapper>
-          <Middleware>{children}</Middleware>
+          <CustomMiddleware>{children}</CustomMiddleware>
         </AuthWrapper>
       </Provider>
       <ToastContainer />

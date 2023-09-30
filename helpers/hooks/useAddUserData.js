@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { size } from 'lodash';
 import { getUserDataFromToken, getApiBaseUrl, getAccessToken } from '@/utils';
-import { userProfile } from '@/redux/auth/authSlice';
+import { getUserInfo } from '@/redux/auth/authSlice';
 
-const Middleware = ({ children }) => {
+function useAddUserData() {
   const { isAuthenticated } = getUserDataFromToken();
   const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ const Middleware = ({ children }) => {
       const userInfo = response?.data;
 
       if (size(userInfo)) {
-        dispatch(userProfile({ userProfile: userInfo }));
+        dispatch(getUserInfo({ userInfo }));
       }
     } catch (error) {
       // Handle errors
@@ -35,7 +35,7 @@ const Middleware = ({ children }) => {
     }
   }, [isAuthenticated]);
 
-  return children;
-};
+  return true;
+}
 
-export default Middleware;
+export default useAddUserData;
