@@ -12,10 +12,10 @@ const Template = ({ children }) => {
   const isLoginOrRegisterPath = loginRegisterPath.includes(pathname);
 
   if (!isAuthenticated && !isLoginOrRegisterPath) {
-    return redirect('/login');
+    redirect('/login');
   }
   if (isAuthenticated && isLoginOrRegisterPath) {
-    return redirect('/');
+    redirect('/');
   }
 
   return children;
