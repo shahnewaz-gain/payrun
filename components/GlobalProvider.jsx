@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify';
 import client from '@/lib/apollo-client';
 import store from '@/redux/store';
 import AuthWrapper from '@/components/AuthWrapper';
-import CustomMiddleware from '@/components/middlewares/CustomMiddleware';
+import CustomMiddleware from '@/components/CustomMiddleware';
 
 const GlobalProvider = ({ children }) => {
   useLayoutEffect(() => {

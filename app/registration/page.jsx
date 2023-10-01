@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import withRoutingMiddleware from '@/components/middlewares/withRoutingMiddleware';
 import { toastAlert } from '@/utils';
 import { requestForRegister } from '@/helpers/restApiRequests';
 import { useTranslation } from '@/lib/i18next/client';
@@ -123,4 +122,4 @@ const Registration = () => {
   );
 };
 
-export default withRoutingMiddleware(Registration);
+export default Registration;

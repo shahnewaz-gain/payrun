@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
-import withRoutingMiddleware from '@/components/middlewares/withRoutingMiddleware';
 import { useTranslation } from '@/lib/i18next/client';
 import { toastAlert } from '@/utils';
 import { requestForLogin } from '@/helpers/restApiRequests';
@@ -88,4 +87,4 @@ const Login = () => {
   );
 };
 
-export default withRoutingMiddleware(Login);
+export default Login;

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-import withRoutingMiddleware from '@/components/middlewares/withRoutingMiddleware';
 import Dashboard from '@/components/dashboard';
 
 const DashboardPage = () => {
@@ -12,4 +11,4 @@ const DashboardPage = () => {
   return <Dashboard />;
 };
 
-export default withRoutingMiddleware(DashboardPage);
+export default DashboardPage;
